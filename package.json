@@ -10,6 +10,7 @@
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.9.1",
     "element-ui": "^2.15.1",
     "eslint": "^7.26.0",

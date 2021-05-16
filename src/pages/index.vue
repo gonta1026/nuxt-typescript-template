@@ -29,16 +29,22 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import APIClient from '../network/ApiClient'
 
 export default Vue.extend({
   components: {
   },
   data () {
     return {
-      text: '' as string
+      text: '' as string // 試しに as で型を明示した。
     }
   },
-  created () {
+  mounted () {
+    (async () => {
+      const data = await APIClient.get('/posts')
+      console.log(data)
+    }
+    )()
     // const age = this.$accessor.age.age
     // const hoge = this.$accessor.age.hoge()
   }
