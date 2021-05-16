@@ -15,7 +15,7 @@ export const mutations = {
   //
 }
 export const actions = {
-  // 
+  //
 }
 export const accessorType = getAccessorType({
   state,
@@ -24,6 +24,6 @@ export const accessorType = getAccessorType({
   actions,
   modules: {
     // import したサブモジュールはここに記述します。
-    age,
-  },
+    age
+  }
 })

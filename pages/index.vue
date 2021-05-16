@@ -31,16 +31,16 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  data() {
+  components: {
+  },
+  data () {
     return {
       text: '' as string
     }
   },
-  components: {
-  },
-  created() {
-    const age = this.$accessor.age.age
-    const hoge = this.$accessor.age.hoge()
+  created () {
+    // const age = this.$accessor.age.age
+    // const hoge = this.$accessor.age.hoge()
   }
 })
 

@@ -1,5 +1,5 @@
-import { Context } from '@nuxt/types'
+// import { Context } from '@nuxt/types'
 
-export default ({ redirect, isDev }: Context) => {
-  //
-}
+// export default ({ redirect, isDev }: Context) => {
+//   //
+// }
