@@ -41,7 +41,7 @@ export default Vue.extend({
   },
   mounted () {
     (async () => {
-      const data = await APIClient.get('/posts')
+      const data = await APIClient.getRequest('/posts')
       console.log(data)
     }
     )()

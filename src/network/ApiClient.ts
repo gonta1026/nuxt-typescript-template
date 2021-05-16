@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-type TError = {
+type NormalizeError = {
   status: number;
   message: string;
   raw: any;
@@ -11,8 +11,7 @@ class APIClient {
 
   constructor () {
     this.axiosInstance = axios.create({
-      // TODO サンプルでjsonplaceholderを
-      baseURL: 'https://jsonplaceholder.typicode.com',
+      baseURL: process.env.API_URL,
       withCredentials: true
     })
 
@@ -70,7 +69,7 @@ class APIClient {
   }
 
   _normalizeError (error: any) {
-    const normalizeError: TError = {
+    const normalizeError: NormalizeError = {
       status: error.response && error.response.status,
       message: error.message,
       raw: error

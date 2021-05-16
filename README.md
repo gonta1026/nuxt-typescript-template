@@ -29,3 +29,4 @@ node -v 12.18.0
 - eslint
 - element-ui
 - axiosの諸設定済
+- dotenvで環境変数を設定
