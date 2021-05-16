@@ -30,3 +30,21 @@ node -v 12.18.0
 - element-ui
 - axiosの諸設定済
 - dotenvで環境変数を設定
+
+### envファイルについて
+
+# deployについて
+
+前もってfirebaseのコンソールでプロジェクトを作成しておく。
+下記は参考のURL
+https://qiita.com/keisei_otsuka/private/22626fc9236c1c456817
+
+```
+$ firebase login
+
+$ firebase init 
+
+$ yarn generate  //distフォルダーに出力
+
+$ firebase deploy
+```
