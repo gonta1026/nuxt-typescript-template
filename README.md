@@ -17,7 +17,7 @@ $ yarn start
 $ yarn generate
 ```
 
-## 環境について
+## package ver
 npm version 6.14.4
 node -v 12.18.0
 
@@ -31,20 +31,25 @@ node -v 12.18.0
 - axiosの諸設定済
 - dotenvで環境変数を設定
 
-### envファイルについて
+## envファイルについて
+このプロジェクトではsrcの配下に置いている。
 
-# deployについて
+## deployについて
 
-前もってfirebaseのコンソールでプロジェクトを作成しておく。
-下記は参考のURL
-https://qiita.com/keisei_otsuka/private/22626fc9236c1c456817
+- 前もってfirebaseのコンソールでプロジェクトを作成しておく。
 
-```
+- 参考URL　https://qiita.com/keisei_otsuka/private/22626fc9236c1c456817
+
+```bash
+# ログイン
 $ firebase login
 
+# 初期化処理をした。firebase.json、.firebasercを作成する。
 $ firebase init 
 
-$ yarn generate  //distフォルダーに出力
+# distフォルダーに出力
+$ yarn generate
 
+# デプロイ
 $ firebase deploy
 ```
