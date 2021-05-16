@@ -28,3 +28,4 @@ node -v 12.18.0
 - prettier
 - eslint
 - element-ui
+- axiosの諸設定済
