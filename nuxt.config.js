@@ -1,7 +1,7 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
+  srcDir: 'src/', // <-追加
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -28,7 +28,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/element-ui'
+    // '@/plugins/element-ui'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
