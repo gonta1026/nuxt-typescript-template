@@ -17,4 +17,14 @@ $ yarn start
 $ yarn generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## 環境について
+npm version 6.14.4
+node -v 12.18.0
+
+### どのような環境か？
+- Nuxt.js(vue.jsはv2のオプショナル)
+- TypeScript
+- vuex
+- prettier
+- eslint
+- element-ui
