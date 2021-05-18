@@ -29,7 +29,9 @@ node -v 12.18.0
 - eslint
 - element-ui
 - axiosの諸設定済
+  - キャメルケースとスネークケースの変換
 - dotenvで環境変数を設定
+
 
 ## envファイルについて
 このプロジェクトではsrcの配下に置いている。
@@ -53,3 +55,9 @@ $ yarn generate
 # デプロイ
 $ firebase deploy
 ```
+
+# プロジェクトに関すること
+- drao.io https://app.diagrams.net/
+
+- SwaggerHub https://app.swaggerhub.com/apis/gonta-manemagi/hogehoge/1.0.0#trial
+
