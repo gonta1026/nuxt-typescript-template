@@ -1,4 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import camelcaseKeys from 'camelcase-keys'
+import snakecaseKeys from 'snakecase-keys'
 
 type NormalizeError = {
   status: number;
@@ -11,16 +13,21 @@ class APIClient {
 
   constructor () {
     this.axiosInstance = axios.create({
-      baseURL: process.env.API_URL,
-      withCredentials: true
+      baseURL: process.env.API_URL
+      // withCredentials: true
     })
 
     this.axiosInstance.interceptors.request.use(
       function (config: AxiosRequestConfig) {
-        const token = window.localStorage?.token as string
-        if (token) {
-          config.headers.Token = token
+        const accessToken = window.localStorage?.accessToken as string
+        const client = window.localStorage?.client as string
+        const uid = window.localStorage?.uid as string
+        if (accessToken && client && uid) {
+          config.headers['access-token'] = accessToken
+          config.headers.client = client
+          config.headers.uid = uid
         }
+        console.log(config)
         return config
       },
       function (error: PromiseConstructor) {
@@ -31,41 +38,55 @@ class APIClient {
 
   async getRequest (url: string, config?: AxiosRequestConfig) {
     try {
-      const res = await this.axiosInstance.get(url, config)
-      return this.handleResponse(res)
+      const response = await this.axiosInstance.get(url, config)
+      const normalizeResponse = this.toCamelcaseKeys(response)
+      return normalizeResponse
     } catch (e) {
       const error = this._normalizeError(e)
       console.log(error)
+      return error
     }
   }
 
-  async postRequest (url: string, data: any, config?: AxiosRequestConfig) {
+  async postRequest (url: string, params: any, config?: AxiosRequestConfig) {
     try {
-      const res = await this.axiosInstance.post(url, data, config)
-      return this.handleResponse(res)
+    /*
+    * NOTE axiosの処理がpost から OPTIONS に変わってしまうので下記のようにクエリパラメーターを構築している。
+    **/
+      const snakeParams: any = snakecaseKeys(params)
+      const normalizeParams = new URLSearchParams(snakeParams)
+      const response = await this.axiosInstance.post(url, normalizeParams, config)
+      return response
     } catch (e) {
       const error = this._normalizeError(e)
       console.log(error)
+      return error
     }
   }
 
-  async deleteRequest (url: string, data: any) {
+  async deleteRequest (url: string, params: any) {
     try {
-      const res = await this.axiosInstance.delete(url, data)
-      return this.handleResponse(res)
+      const response = await this.axiosInstance.delete(url, params)
+      return response
     } catch (e) {
       const error = this._normalizeError(e)
       console.log(error)
+      return error
     }
   }
 
-  handleResponse (response: AxiosResponse<any>) {
-    const { data, status } = response
-    if (status === 200) {
-      return data
-    }
+  // handleResponse (response: AxiosResponse<any>) {
+  //   const { data, status } = response
+  //   if (status === 200) {
+  //     return data
+  //   }
+  //   throw new Error(data)
+  // }
 
-    throw new Error(data)
+  toCamelcaseKeys (response: AxiosResponse<any>) {
+    const data = camelcaseKeys({ ...response.data })
+    const normalizeResponse = { ...response, data }
+    return normalizeResponse
   }
 
   _normalizeError (error: any) {

@@ -2,51 +2,53 @@
   <div class="container">
     <div>
       <Logo />
+      <el-button @click="open">
+        Button
+      </el-button>
       <h1 class="title">
         nuxt-ts-sample
       </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <basic-dialog
+        title="タイトルです"
+        :visible="visible"
+        width="50%"
+        @handleClose="handleClose"
+      >
+        slotで渡している。コンテンツ
+      </basic-dialog>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import APIClient from '../network/ApiClient'
+import BasicDialog from '../components/atoms/BasicDialog.vue'
 
 export default Vue.extend({
   components: {
+    BasicDialog
   },
   data () {
     return {
+      visible: false,
+      visible02: false,
       text: '' as string // 試しに as で型を明示した。
     }
   },
   mounted () {
     (async () => {
-      const data = await APIClient.getRequest('/posts')
+      const data = await axios.get('https://jsonplaceholder.typicode.com/photos')// サンプル実装
       console.log(data)
     }
     )()
-    // const age = this.$accessor.age.age
-    // const hoge = this.$accessor.age.hoge()
+  },
+  methods: {
+    open () {
+      this.visible = true
+    },
+    handleClose () {
+      this.visible = false
+    }
   }
 })
 
