@@ -22,6 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import axios from 'axios'
 import BasicDialog from '../components/atoms/BasicDialog.vue'
 
 export default Vue.extend({
@@ -32,7 +33,7 @@ export default Vue.extend({
     return {
       visible: false,
       visible02: false,
-      text: '' as string // 試しに as で型を明示した。
+      text: '' as string
     }
   },
   mounted () {
